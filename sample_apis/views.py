@@ -15,6 +15,7 @@ class JSONResponse(HttpResponse):
 		kwargs['content_type'] = 'application/json'
 		super(JSONResponse, self).__init__(content, **kwargs)
 
+
 @csrf_exempt
 def snippet_list(request):
 	"""
@@ -32,6 +33,7 @@ def snippet_list(request):
 			serializer.save()
 			return JSONResponse(serializer.data, status=201)
 		return JSONResponse(serializer.errors, status=400)
+
 
 @csrf_exempt
 def snippet_detail(request, pk):
@@ -58,6 +60,7 @@ def snippet_detail(request, pk):
 	elif request.method == 'DELETE':
 		snippet.delete()
 		return HttpResponse(status=204)
+
 
 @csrf_exempt
 def sample_image_list(request):
